@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	const char *s;
 	va_list args;
 	flags_t flags = {0, 0, 0};
-	
+
 	int count = 0;
 
 	va_start(args, format);
