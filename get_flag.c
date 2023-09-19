@@ -24,6 +24,14 @@ int get_flag(char e, flags_t *a)
 			a->hash = 1;
 			i = 1;
 			break;
+		case '0':
+			a->zero = 1;
+			i = 1;
+			break;
+		case '-':
+			a->minus = 1;
+			i = 1;
+			break;
 	}
 	return (i);
 }

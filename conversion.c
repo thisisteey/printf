@@ -5,9 +5,10 @@
  * @num: input number
  * @base: input base
  * @lowercase: flag if hexa values need to be lowercase
+ * @a: pointer to flag_t structure containing formatting flags
  * Return: return pointer to the string
  */
-char *convert(unsigned long int num, int base, int lowercase)
+char *convert(unsigned long int num, int base, int lowercase, flags_t *a)
 {
 	static char *rep;
 	static char buffer[50];
@@ -25,6 +26,17 @@ char *convert(unsigned long int num, int base, int lowercase)
 		*--ptr = rep[num % base];
 		num /= base;
 	} while (num != 0);
+
+	if (a->precision > 0)
+	{
+		int padding = a->precision - (int)(strlen(ptr));
+
+		while (padding > 0)
+		{
+			*--ptr = '0';
+			padding--;
+		}
+	}
 
 	return (ptr);
 }

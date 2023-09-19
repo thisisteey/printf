@@ -8,12 +8,22 @@
  * @plus: flag for the '+' character
  * @space: flag for the ' ' character
  * @hash: flag for the '#' character
+ * @zero: flag for the '0' character
+ * @minus: flag for the '-' character
+ * @width: filed width
+ * @precision: precision
+ * @length: length modifier (l or h)
  */
 typedef struct flags
 {
 	int plus;
 	int space;
 	int hash;
+	int zero;
+	int minus;
+	int width;
+	int precision;
+	char length;
 } flags_t;
 
 /**
@@ -35,7 +45,7 @@ int print_small_hexa(va_list b, flags_t *a);
 int print_big_hexa(va_list b, flags_t *a);
 int print_bin(va_list b, flags_t *a);
 int print_octa(va_list b, flags_t *a);
-char *convert(unsigned long int num, int base, int lowercase);
+char *convert(unsigned long int num, int base, int lowercase, flags_t *a);
 int _printf(const char *format, ...);
 int (*get_print(char e))(va_list, flags_t *);
 int get_flag(char e, flags_t *a);
