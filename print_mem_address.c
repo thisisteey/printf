@@ -14,11 +14,12 @@ int print_mem_address(va_list b, flags_t *a)
 
 	int count = 0;
 
-	(void)a;
+	if (a->precision == 0 && p == 0)
+		return (_puts(""));
 
 	if (!p)
 		return (_puts("(nil)"));
-	s = convert(p, 16, 1);
+	s = convert(p, 16, 1, a);
 	count += _puts("0x");
 	count += _puts(s);
 

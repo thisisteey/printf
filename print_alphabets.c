@@ -10,7 +10,13 @@ int print_str(va_list b, flags_t *a)
 {
 	char *s = va_arg(b, char *);
 
-	(void)a;
+	if (a->precision >= 0 && s)
+	{
+		int len = strlen(s);
+
+		if (a->precision < len)
+			s =  strndup(s, a->precision);
+	}
 
 	if (!s)
 		s = "(null)";

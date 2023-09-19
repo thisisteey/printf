@@ -15,7 +15,26 @@ int print_integer(va_list b, flags_t *a)
 	if (a->plus == 1 && x >= 0)
 		res += _putchar('+');
 	if (x <= 0)
+	{
 		res++;
+		if (a->zero == 1 && a->minus == 0)
+			_putchar('-');
+	}
+	if (a->zero == 1 && a->minus == 0)
+	{
+		while (res < a->width)
+		{
+			res += _putchar('0');
+		}
+	}
+	if (a->minus == 1)
+	{
+		_putchar('-');
+		while (res <  a->width)
+		{
+			res += _putchar(' ');
+		}
+	}
 	print_num(x);
 
 	return (res);
@@ -32,8 +51,16 @@ int print_unsigned_int(va_list b, flags_t *a)
 	unsigned int u = va_arg(b, unsigned int);
 	char *str = convert(u, 10, 0);
 
+	if (a->zero == 1 && a->minus == 0)
+	{
+		while (count < a->width)
+		{
+			count += _putchar('0');
+		}
+	}
 	(void)a;
 
+	count += _puts(str)
 	return (_puts(str));
 }
 

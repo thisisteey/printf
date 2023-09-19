@@ -12,7 +12,6 @@ int print_nonprint_char(va_list b, flags_t *a)
 	char *r;
 	char *s = va_arg(b, char *);
 
-	(void)a;
 	if (!s)
 		return (_puts("(null)"));
 
@@ -22,7 +21,7 @@ int print_nonprint_char(va_list b, flags_t *a)
 		{
 			_puts("\\x");
 			count += 2;
-			r = convert(s[x], 16, 0);
+			r = convert(s[x], 16, 0, a);
 			if (!r[1])
 				count += _putchar('0');
 			count += _puts(r);
@@ -44,13 +43,29 @@ int print_rev(va_list b, flags_t *a)
 	int x = 0, y;
 	char *s = va_arg(b, char *);
 
-	(void)a;
 	if (!s)
 		s = "(null)";
 
 	while (s[x])
 		x++;
-
+	if (a->minus == 1)
+	{
+		for (y = x - 1 ; y >= 0 ; y--)
+			_putchar(s[y]);
+		while (x < a->width)
+		{
+			_putchar(' ');
+			x++;
+		}
+	}
+	else
+	{
+		while (x < a->width)
+		{
+			_putchar(' ');
+			x++;
+		}
+	}
 	for (y = x - 1 ; y >= 0 ; y--)
 		_putchar(s[y]);
 

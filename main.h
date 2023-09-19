@@ -2,6 +2,7 @@
 #define MAIN_H
 #include <stdlib.h>
 #include <stdarg.h>
+#include <String.h>
 
 /**
  * struct flags - struct conatining  formatting flags

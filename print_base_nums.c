@@ -9,7 +9,7 @@
 int print_small_hexa(va_list b, flags_t *a)
 {
 	unsigned int num = va_arg(b, unsigned int);
-	char *str = convert(num, 16, 1);
+	char *str = convert(num, 16, 1, a);
 	int count = 0;
 
 	if (a->hash == 1 && str[0] != '0')
@@ -27,7 +27,7 @@ int print_small_hexa(va_list b, flags_t *a)
 int print_big_hexa(va_list b, flags_t *a)
 {
 	unsigned int num = va_arg(b, unsigned int);
-	char *str = convert(num, 16, 0);
+	char *str = convert(num, 16, 0, a);
 	int count = 0;
 
 	if (a->hash == 1 && str[0] != '0')
@@ -45,7 +45,7 @@ int print_big_hexa(va_list b, flags_t *a)
 int print_bin(va_list b, flags_t *a)
 {
 	unsigned int num = va_arg(b, unsigned int);
-	char *str = convert(num, 2, 0);
+	char *str = convert(num, 2, 0, a);
 
 	(void)a;
 
@@ -61,7 +61,7 @@ int print_bin(va_list b, flags_t *a)
 int print_octa(va_list b, flags_t *a)
 {
 	unsigned int num = va_arg(b, unsigned int);
-	char *str = convert(num, 8, 0);
+	char *str = convert(num, 8, 0, a);
 	int count = 0;
 
 	if (a->hash == 1 && str[0] != '0')
