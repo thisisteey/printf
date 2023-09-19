@@ -49,7 +49,8 @@ int print_integer(va_list b, flags_t *a)
 int print_unsigned_int(va_list b, flags_t *a)
 {
 	unsigned int u = va_arg(b, unsigned int);
-	char *str = convert(u, 10, 0);
+	char *str = convert(u, 10, 0, a);
+	int count = 0;
 
 	if (a->zero == 1 && a->minus == 0)
 	{
@@ -60,7 +61,7 @@ int print_unsigned_int(va_list b, flags_t *a)
 	}
 	(void)a;
 
-	count += _puts(str)
+	count += _puts(str);
 	return (_puts(str));
 }
 
