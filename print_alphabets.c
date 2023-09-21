@@ -16,8 +16,8 @@ int print_str(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
 
 	(void)a;
 	(void)f;
-        (void)d;
-        (void)c;
+	(void)d;
+	(void)c;
 
 	if (!s)
 		s = "(null)";

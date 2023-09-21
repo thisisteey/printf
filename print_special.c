@@ -4,9 +4,12 @@
  * print_nonprint_char - prints non printable characters
  * @b: va_list argumnets from _printf
  * @a: pointer to the struct flags
+ * @f: pointer to the struct width
+ * @d: pointer to the struct precision
+ * @c: pointer to the struct length
  * Return: number of characters
  */
-int print_nonprint_char(va_list b, flags_t *a)
+int print_nonprint_char(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
 {
 	int x, count = 0;
 	char *r;
@@ -21,7 +24,7 @@ int print_nonprint_char(va_list b, flags_t *a)
 		{
 			_puts("\\x");
 			count += 2;
-			r = convert(s[x], 16, 0, a);
+			r = convert(s[x], 16, 0, a, f, d, c);
 			if (!r[1])
 				count += _putchar('0');
 			count += _puts(r);
@@ -36,36 +39,26 @@ int print_nonprint_char(va_list b, flags_t *a)
  * print_rev - prints a string in reverse
  * @b: argument from _printf
  * @a: pointer to the struct flags
+ * @f: pointer to the struct width
+ * @d: pointer to the struct precision
+ * @c: pointer to the struct length
  * Return: length of the printed string
  */
-int print_rev(va_list b, flags_t *a)
+int print_rev(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
 {
 	int x = 0, y;
 	char *s = va_arg(b, char *);
+
+	(void)a;
+	(void)f;
+	(void)d;
+	(void)c;
 
 	if (!s)
 		s = "(null)";
 
 	while (s[x])
 		x++;
-	if (a->minus == 1)
-	{
-		for (y = x - 1 ; y >= 0 ; y--)
-			_putchar(s[y]);
-		while (x < a->width)
-		{
-			_putchar(' ');
-			x++;
-		}
-	}
-	else
-	{
-		while (x < a->width)
-		{
-			_putchar(' ');
-			x++;
-		}
-	}
 	for (y = x - 1 ; y >= 0 ; y--)
 		_putchar(s[y]);
 
@@ -76,9 +69,12 @@ int print_rev(va_list b, flags_t *a)
  * print_rot13 - prints a string using rot13
  * @b: list of arguments from _printf
  * @a: pointer to the struct flags
+ * @f: pointer to the struct width
+ * @d: pointer to the struct precision
+ * @c: pointer to the struct length
  * Return: length of the printed string
  */
-int print_rot13(va_list b, flags_t *a)
+int print_rot13(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
 {
 	int x, y;
 	char rot13[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -86,6 +82,9 @@ int print_rot13(va_list b, flags_t *a)
 	char *s = va_arg(b, char *);
 
 	(void)a;
+	(void)f;
+	(void)d;
+	(void)c;
 
 	for (y = 0; s[y]; y++)
 	{
@@ -108,12 +107,18 @@ int print_rot13(va_list b, flags_t *a)
  * print_percent_sign - prints the percent sign
  * @b: va_list arguments from _printf
  * @a: pointer to the struct flags
+ * @f: pointer to the struct width
+ * @d: pointer to the struct precision
+ * @c: pointer to the struct length
  * Return: number of char printed
  */
-int print_percent_sign(va_list b, flags_t *a)
+int print_percent_sign(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
 {
 	(void)b;
 	(void)a;
+	(void)f;
+	(void)d;
+	(void)c;
 
 	return (_putchar('%'));
 }

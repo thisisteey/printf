@@ -16,7 +16,7 @@ int print_small_hexa(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
 	int count = 0;
 
 	if (c->lon == 1 && c->sho == 0 && str[0] != '0')
-		count+= _putchar('l');
+		count += _putchar('l');
 	if (c->sho == 1 && str[0] != '0')
 		count += _putchar('h');
 
@@ -27,13 +27,13 @@ int print_small_hexa(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
 		count += _putchar('^');
 
 	if (a->minus == 1 && a->zero == 0 && a->hash == 0 && str[0] != '0')
-                count += _putchar('-');
-        if (a->zero == 1 && a->hash == 0 && str[0] != '0')
-                count += _putchar('0');
-        if (a->hash == 1 && str[0] != '0')
-                count += _putchar('#');
-        if (str[0] != '0')
-                count += _puts(str);
+		count += _putchar('-');
+	if (a->zero == 1 && a->hash == 0 && str[0] != '0')
+		count += _putchar('0');
+	if (a->hash == 1 && str[0] != '0')
+		count += _putchar('#');
+	if (str[0] != '0')
+		count += _puts(str);
 
 	return (count);
 }
@@ -54,24 +54,25 @@ int print_big_hexa(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
 	int count = 0;
 
 	if (c->lon == 1 && c->sho == 0 && str[0] != '0')
-		count+= _putchar('l');
+		count += _putchar('l');
+
 	if (c->sho == 1 && str[0] != '0')
 		count += _putchar('h');
 
 	if (d->dot && str[0] != '0')
-                count += _putchar('.');
+		count += _putchar('.');
 
 	if (f->nom && str[0] != '0')
 		count += _putchar('^');
 
-	if (a->minus== 1 && a->zero == 0 && a->hash == 0 && str[0] != '0')
-                count += _putchar('-');
-        if (a->zero == 1 && a->hash == 0 && str[0] != '0')
-                count += _putchar('0');
-        if (a->hash == 1 && str[0] != '0')
-                count += _putchar('#');
-        if (str[0] != '0')
-                count += _puts(str);
+	if (a->minus == 1 && a->zero == 0 && a->hash == 0 && str[0] != '0')
+		count += _putchar('-');
+	if (a->zero == 1 && a->hash == 0 && str[0] != '0')
+		count += _putchar('0');
+	if (a->hash == 1 && str[0] != '0')
+		count += _putchar('#');
+	if (str[0] != '0')
+		count += _puts(str);
 
 	return (count);
 }
@@ -113,24 +114,23 @@ int print_octa(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
 	int count = 0;
 
 	if (c->lon == 1 && c->sho == 0 && str[0] != '0')
-                count+= _putchar('l');
-        if (c->sho == 1 && str[0] != '0')
-                count += _putchar('h');
-
+		count += _putchar('l');
+	if (c->sho == 1 && str[0] != '0')
+		count += _putchar('h');
 	if (d->dot && str[0] != '0')
-                count += _putchar('.');
+		count += _putchar('.');
 
 	if (f->nom && str[0] != '0')
 		count += _putchar('^');
 
-        if (a->minus== 1 && a->zero == 0 && a->hash == 0 && str[0] != '0')
-                count += _putchar('-');
-        if (a->zero == 1 && a->hash == 0 && str[0] != '0')
-                count += _putchar('0');
-        if (a->hash == 1 && str[0] != '0')
-                count += _putchar('#');
-        if (str[0] != '0')
-                count += _puts(str);
+	if (a->minus == 1 && a->zero == 0 && a->hash == 0 && str[0] != '0')
+		count += _putchar('-');
+	if (a->zero == 1 && a->hash == 0 && str[0] != '0')
+		count += _putchar('0');
+	if (a->hash == 1 && str[0] != '0')
+		count += _putchar('#');
+	if (str[0] != '0')
+	count += _puts(str);
 
-        return (count);
+	return (count);
 }
