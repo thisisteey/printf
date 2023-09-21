@@ -5,7 +5,7 @@
  * @e: character that holds the conversion specifier
  * Return: pointer to the matching print function
  */
-int (*get_print(char e))(va_list, flags_t *)
+int (*get_print(char e))(va_list, flags_t *, wid_t *, pre_dot *, len_t *)
 {
 	print_h func_arr[] = {
 		{'i', print_integer},

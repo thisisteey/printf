@@ -33,7 +33,7 @@ typedef struct width
 
 /**
  * struct precision - struct containing precision modifier
- @dot: precision modifier for '.'
+ * @dot: precision modifier for '.'
  */
 typedef struct precision
 {
@@ -47,8 +47,8 @@ typedef struct precision
  */
 typedef struct length
 {
-        int lon;
-        int sho;
+	int lon;
+	int sho;
 } len_t;
 
 /**
@@ -63,7 +63,7 @@ typedef struct printhandler
 } print_h;
 
 
-int print_integer(va_list b, flags_t *a, wid_t *f, pre_dot *d,len_t *c);
+int print_integer(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c);
 void print_num(int x);
 int print_unsigned_int(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c);
 int count_digit(int c);
@@ -73,10 +73,11 @@ int print_big_hexa(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c);
 int print_bin(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c);
 int print_octa(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c);
 
-char *convert(unsigned long int num, int base, int lowercase, flags_t *a, wid_t *f, pre_dot *d, len_t *c);
+char *convert(unsigned long int num, int base, int lowercase,
+		flags_t *a, wid_t *f, pre_dot *d, len_t *c);
 
 int _printf(const char *format, ...);
-int (*get_print(char e))(va_list, flags_t *, wid_t *f, pre_dot *d, len_t *c);
+int (*get_print(char e))(va_list, flags_t *, wid_t *, pre_dot *, len_t *);
 int get_flag(char e, flags_t *a, wid_t *f, pre_dot *d, len_t *c);
 int get_width(char e, flags_t *a, wid_t *f, pre_dot *d, len_t *c);
 int get_precision(char e, flags_t *a, wid_t *f, pre_dot *d, len_t *c);
