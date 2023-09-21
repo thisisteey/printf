@@ -8,11 +8,11 @@
  */
 int _printf(const char *format, ...)
 {
-	int (*pfunc)(va_list, flags_t *, wid_t *, pre_dot *, len_t *);
+	int (*pfunc)(va_list, flags_t *);
 	const char *s;
 	va_list args;
-	flags_t flags = {0, 0, 0, 0, 0}, wid_t width = {0};
-	pre_dot precision = {0}, len_t length = {0, 0};
+	flags_t flags = {0, 0, 0};
+
 	int count = 0;
 
 	va_start(args, format);
@@ -30,17 +30,12 @@ int _printf(const char *format, ...)
 				count += _putchar('%');
 				continue;
 			}
-			while (get_flag(*s, &flags, &width, &precision, &length))
-				s++;
-			while (get_width(*s, &flags, &width, &precision, &length))
-				s++;
-			while (get_precision(*s, &flags, &width, &precision, &length))
-				s++;
-			while (get_length(*s, &flags, &width, &precision, &length))
+			while (get_flag(*s, &flags))
 				s++;
 			pfunc = get_print(*s);
 			count += (pfunc)
-				? pfunc(args, &flags, &width, &precision, &length) : _printf("%%%c", *s);
+				? pfunc(args, &flags)
+				: _printf("%%%c", *s);
 		}
 		else
 			count += _putchar(*s);

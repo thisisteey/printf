@@ -5,21 +5,20 @@
  * in hexadecimal format
  * @b: va_list arguments from _printf
  * @a: pointer to the struct flags
- * @f: pointer to the struct width
- * @d: pointer to the struct precision
- * @c: pointer to the strcut length
  * Return: number of characters printed
  */
-int print_mem_address(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
+int print_mem_address(va_list b, flags_t *a)
 {
 	char *s;
 	unsigned long int p = va_arg(b, unsigned long int);
 
 	int count = 0;
 
+	(void)a;
+
 	if (!p)
 		return (_puts("(nil)"));
-	s = convert(p, 16, 1, a, f, d, c);
+	s = convert(p, 16, 1);
 	count += _puts("0x");
 	count += _puts(s);
 

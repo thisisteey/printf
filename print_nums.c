@@ -4,39 +4,21 @@
  * print_integer - prints an integer
  * @b: va_list arguments
  * @a: pointer to the struct flags
- * @f: pointer to the struct width
- * @d: pointer to the struct precision
- * @c: pointer to the struct length
  * Return: number of characters printed
  */
-int print_integer(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
+int print_integer(va_list b, flags_t *a)
 {
 	int x = va_arg(b, int);
 	int res = count_digit(x);
 
-	if (c->lon == 1 && c->sho == 0 && x >= 0)
-		res += _putchar('l');
-
-	if (c->sho == 1 && x >= 0)
-		res += _putchar('h');
-
-	if (d->dot && x >= 0)
-		res += _putchar('.');
-
-	if (f->nom && x >= 0)
-		res += _putchar('^');
-
-	if (a->space == 1 && a->plus == 0 && a->minus == 0 && a->zero == 0 && x >= 0)
+	if (a->space == 1 && a->plus == 0 && x >= 0)
 		res += _putchar(' ');
-	if (a->plus == 1 && a->minus == 0 && a->zero == 0 && x >= 0)
+	if (a->plus == 1 && x >= 0)
 		res += _putchar('+');
-	if (a->minus == 1 && a->zero == 0 && x >= 0)
-		res += _putchar('-');
-	if (a->zero == 1 && x >= 0)
-		res += _putchar('0');
 	if (x <= 0)
 		res++;
 	print_num(x);
+
 	return (res);
 }
 
@@ -44,36 +26,16 @@ int print_integer(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
  * print_unsigned_int - prints an unsigned integer
  * @b: variable list of arguments
  * @a: pointer to the struct flags
- * @f: pointer to the struct width
- * @d: pointer to the struct precision
- * @c: pointer to the struct length
  * Return: number of characters printed
  */
-int print_unsigned_int(va_list b, flags_t *a, wid_t *f, pre_dot *d, len_t *c)
+int print_unsigned_int(va_list b, flags_t *a)
 {
 	unsigned int u = va_arg(b, unsigned int);
-	int res = 0;
+	char *str = convert(u, 10, 0);
 
-	if (c->lon == 1 && c->sho == 0 && u > 0)
-		res += _putchar('l');
-	if (c->sho == 1 && u > 0)
-		res += _putchar('h');
+	(void)a;
 
-	if (d->dot == 1 && u > 0)
-		res += _putchar('.');
-
-	if (f->nom == 1 && u > 0)
-		res += _putchar('^');
-
-	if (a->minus == 1 && a->zero == 0 && u > 0)
-		res += _putchar('-');
-
-	if (a->zero == 1 && u > 0)
-		res += _putchar('0');
-
-	res += _putchar('u');
-
-	return (res);
+	return (_puts(str));
 }
 
 /**
